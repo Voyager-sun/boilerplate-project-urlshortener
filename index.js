@@ -34,8 +34,7 @@ let index = 1
 app
   .post('/api/shorturl', function (req, res) {
     console.log('req.body', req.body)
-    const q = url.parse(req.body.url)
-    if (!isValidUrl(q.host)) {
+    if (!isValidUrl(req.body.url)) {
       res.json({ error: 'invalid url' })
       return
     }
