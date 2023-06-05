@@ -33,8 +33,9 @@ let index = 1
 // Your first API endpoint
 app
   .post('/api/shorturl', function (req, res) {
-    console.log('req.body', req.body)
-    if (!isValidUrl(req.body.url)) {
+    const q = url.parse(req.body.url)
+    console.log('req.body', q)
+    if (!isValidUrl(req.body.url) || !q.host) {
       res.json({ error: 'invalid url' })
       return
     }
